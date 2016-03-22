@@ -10,19 +10,7 @@ class ReportsController < ApplicationController
 
 
   def search
-    @start_time = Time.now
-
-    if params[:search_term]
-      @hits = []
-      @hits += Hit.joins(:gene).where('genes.dna like ?', "%#{params[:search_term]}%")
-      @assembly = Assembly.find_by_name(params[:search_term])
-      @hits += @assembly.hits if @assembly
-      @hits += Hit.where('match_gene_name like ?', "%#{params[:search_term]}%" )
-    else
-      @hits = Hit.all.order('percent_similarity DESC')
-    end
-
-    @memory_used = memory_in_mb
+    @assembly = Assembly.all     
   end
 
   private def memory_in_mb
