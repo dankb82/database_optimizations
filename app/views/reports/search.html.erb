@@ -1,0 +1,5 @@
+<h1>Search the database: <%= @assembly.name %></h1>
+<%= form_tag(reports_all_data_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search Database" %>
+  <%= submit_tag "Search" %>
+<% end %>
